@@ -40,7 +40,7 @@ var LoadingUI = (function (_super) {
     __extends(LoadingUI, _super);
     function LoadingUI() {
         var _this = _super.call(this) || this;
-        _this.w = 680;
+        _this.w = 580;
         _this.r = 8;
         _this.once(egret.Event.ADDED_TO_STAGE, _this.createView, _this);
         return _this;
@@ -63,7 +63,7 @@ var LoadingUI = (function (_super) {
         shapeP.width = w;
         shapeP.height = r * 2;
         shapeP.x = (this.stage.stageWidth - shapeP.width) / 2;
-        shapeP.y = this.stage.stageHeight - shapeP.height - 40;
+        shapeP.y = this.stage.stageHeight / 2;
         shapeP.graphics.beginFill(0xdddddd, 0.3);
         shapeP.graphics.moveTo(r, 0);
         shapeP.graphics.lineTo(w - r, 0);
@@ -77,7 +77,7 @@ var LoadingUI = (function (_super) {
         shapeMask.width = w;
         shapeMask.height = r * 2;
         shapeMask.x = (this.stage.stageWidth - shapeMask.width) / 2;
-        shapeMask.y = this.stage.stageHeight - shapeMask.height - 40;
+        shapeMask.y = this.stage.stageHeight / 2;
         shapeMask.graphics.beginFill(0x35f7ff);
         shapeMask.graphics.moveTo(r, 0);
         shapeMask.graphics.lineTo(w - r, 0);
@@ -92,7 +92,7 @@ var LoadingUI = (function (_super) {
         this.shapeProgress.height = r * 2;
         this.shapeProgress.anchorOffsetX = this.shapeProgress.width;
         this.shapeProgress.x = (this.stage.stageWidth - this.shapeProgress.width) / 2;
-        this.shapeProgress.y = this.stage.stageHeight - this.shapeProgress.height - 40;
+        this.shapeProgress.y = this.stage.stageHeight / 2;
         this.shapeProgress.graphics.beginFill(0x33CCFF);
         this.shapeProgress.graphics.moveTo(r, 0);
         this.shapeProgress.graphics.lineTo(w - r, 0);
@@ -105,12 +105,12 @@ var LoadingUI = (function (_super) {
         this.addChild(this.shapeProgress);
         this.textField = new egret.TextField();
         this.addChild(this.textField);
-        this.textField.y = this.stage.stageHeight - 100;
+        this.textField.y = this.stage.stageHeight / 2 - 50;
         this.textField.width = this.stage.stageWidth;
         this.textField.height = 50;
         this.textField.textAlign = "center";
         this.textField.text = "资源加载中...";
-        var str = "抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当\n适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活";
+        var str = "抵制不良游戏，拒绝盗版游戏\n注意自我保护，谨防受骗上当\n适度游戏益脑，沉迷游戏伤身\n合理安排时间，享受健康生活";
         this.textHint = new egret.TextField();
         // this.textHint.width = this.width;
         this.textHint.lineSpacing = 15;
@@ -119,7 +119,7 @@ var LoadingUI = (function (_super) {
         this.textHint.size = 30;
         this.textHint.textColor = 0x8c8c91;
         this.textHint.x = (this.stage.stageWidth - this.textHint.width) / 2;
-        this.textHint.y = 50;
+        this.textHint.y = this.stage.stageHeight - 200;
         this.addChild(this.textHint);
     };
     LoadingUI.prototype.onProgress = function (current, total) {
