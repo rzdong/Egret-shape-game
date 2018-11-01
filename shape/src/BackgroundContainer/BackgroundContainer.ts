@@ -18,9 +18,11 @@ class BackgroundContainer extends BaseUILayer{
 		// shape.graphics.endFill();
 		// this.addChild(shape)
 
-		let sky = new NetBitmap('resource/game_res/loadingbg.jpg')//'https://static01.coloros.com/bbs/data/attachment/forum/201312/27/174621xzs8lj9gzi28npu2.jpg'
+		let sky = new egret.Bitmap(RES.getRes('home_bg_jpg'))//'https://static01.coloros.com/bbs/data/attachment/forum/201312/27/174621xzs8lj9gzi28npu2.jpg'
 
-        
+        sky.width = this.stage.stageWidth;
+		sky.height = this.stage.stageHeight;
+		this.addChild(sky)
 	}
 
 

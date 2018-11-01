@@ -21,7 +21,10 @@ var BackgroundContainer = (function (_super) {
         // shape.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
         // shape.graphics.endFill();
         // this.addChild(shape)
-        var sky = new NetBitmap('resource/game_res/loadingbg.jpg'); //'https://static01.coloros.com/bbs/data/attachment/forum/201312/27/174621xzs8lj9gzi28npu2.jpg'
+        var sky = new egret.Bitmap(RES.getRes('home_bg_jpg')); //'https://static01.coloros.com/bbs/data/attachment/forum/201312/27/174621xzs8lj9gzi28npu2.jpg'
+        sky.width = this.stage.stageWidth;
+        sky.height = this.stage.stageHeight;
+        this.addChild(sky);
     };
     return BackgroundContainer;
 }(BaseUILayer));

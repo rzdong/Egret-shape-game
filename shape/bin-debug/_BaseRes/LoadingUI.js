@@ -49,7 +49,7 @@ var LoadingUI = (function (_super) {
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
         var shape = new egret.Shape();
-        shape.graphics.beginFill(0x222222);
+        shape.graphics.beginFill(0x82b7ff);
         shape.graphics.drawRect(0, 0, stageW, stageH);
         shape.graphics.endFill();
         this.addChild(shape);
@@ -93,7 +93,7 @@ var LoadingUI = (function (_super) {
         this.shapeProgress.anchorOffsetX = this.shapeProgress.width;
         this.shapeProgress.x = (this.stage.stageWidth - this.shapeProgress.width) / 2;
         this.shapeProgress.y = this.stage.stageHeight / 2;
-        this.shapeProgress.graphics.beginFill(0x33CCFF);
+        this.shapeProgress.graphics.beginFill(0xffffff);
         this.shapeProgress.graphics.moveTo(r, 0);
         this.shapeProgress.graphics.lineTo(w - r, 0);
         this.shapeProgress.graphics.drawArc(w - r, r, r, -Math.PI / 2, Math.PI / 2);
@@ -117,9 +117,9 @@ var LoadingUI = (function (_super) {
         // this.textHint.textAlign = egret.HorizontalAlign.CENTER;
         this.textHint.text = str;
         this.textHint.size = 30;
-        this.textHint.textColor = 0x8c8c91;
+        this.textHint.textColor = 0xeeeeee;
         this.textHint.x = (this.stage.stageWidth - this.textHint.width) / 2;
-        this.textHint.y = this.stage.stageHeight - 200;
+        this.textHint.y = this.stage.stageHeight - 250;
         this.addChild(this.textHint);
     };
     LoadingUI.prototype.onProgress = function (current, total) {
