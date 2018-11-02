@@ -26,7 +26,7 @@ var Home = (function (_super) {
         this.logo = Util.createBitmapByName('logo_png');
         this.logo.anchorOffsetX = this.logo.width / 2;
         this.logo.anchorOffsetY = this.logo.height / 2;
-        this.logo.y = 250;
+        this.logo.y = -100;
         this.logo.x = Width / 2;
         this.addChild(this.logo);
         this.logo.mask = shapeCircle;
@@ -45,7 +45,7 @@ var Home = (function (_super) {
         this.title = Util.createBitmapByName('title_png');
         this.title.anchorOffsetX = this.title.width / 2;
         this.title.anchorOffsetY = this.title.height / 2;
-        this.title.y = 500;
+        this.title.y = -100;
         this.title.x = Width / 2;
         this.title.scaleX = 1.2;
         this.title.scaleY = 1.2;
@@ -54,7 +54,7 @@ var Home = (function (_super) {
         this.play = Util.createBitmapByName('play_png');
         this.play.anchorOffsetX = this.play.width / 2;
         this.play.anchorOffsetY = this.play.height / 2;
-        this.play.y = Height - 300;
+        this.play.y = Height + 100;
         this.play.x = Width / 2;
         this.play.scaleX = 0.7;
         this.play.scaleY = 0.7;
@@ -71,28 +71,63 @@ var Home = (function (_super) {
         this.music.height = 80;
         this.music.anchorOffsetX = this.music.width / 2;
         this.music.anchorOffsetY = this.music.height / 2;
-        this.music.y = 60;
-        this.music.x = Width - 60;
+        this.music.y = -100;
+        this.music.x = 60;
         this.music.touchEnabled = true;
         this.addChild(this.music);
         this.music.filters = [dropShadowFilter];
-        egret.Tween.get(this.title, { loop: true }).to({ y: 520 }, 3000, egret.Ease.sineInOut).to({ y: 500 }, 3000, egret.Ease.sineInOut);
-        egret.Tween.get(this.play, { loop: true })
-            .wait(8000)
-            .to({ rotation: 360 }, 400, egret.Ease.sineInOut)
-            .to({ scaleX: 0.78, scaleY: 0.78 }, 80)
-            .to({ scaleX: 0.7, scaleY: 0.7 }, 80)
-            .to({ scaleX: 0.78, scaleY: 0.78 }, 80)
-            .to({ scaleX: 0.7, scaleY: 0.7 }, 80);
         this.play.addEventListener(egret.TouchEvent.TOUCH_TAP, this.playTap, this);
         this.music.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.musicBegin, this);
+        this.playEnterAnimation();
+    };
+    Home.prototype.playEnterAnimation = function () {
+        var _this = this;
+        var Height = this.stage.stageHeight;
+        egret.Tween.get(this.logo).to({ y: 250 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.logo);
+        });
+        egret.Tween.get(this.title).to({ y: 500 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.title);
+            egret.Tween.get(_this.title, { loop: true }).to({ y: 550 }, 3000, egret.Ease.sineInOut).to({ y: 500 }, 3000, egret.Ease.sineInOut);
+        });
+        egret.Tween.get(this.play).to({ y: Height - 300 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.play);
+            egret.Tween.get(_this.play, { loop: true })
+                .wait(8000)
+                .to({ rotation: 360 }, 400, egret.Ease.sineInOut)
+                .to({ scaleX: 0.78, scaleY: 0.78 }, 80)
+                .to({ scaleX: 0.7, scaleY: 0.7 }, 80)
+                .to({ scaleX: 0.78, scaleY: 0.78 }, 80)
+                .to({ scaleX: 0.7, scaleY: 0.7 }, 80);
+        });
+        egret.Tween.get(this.music).to({ y: 60 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.music);
+        });
     };
     Home.prototype.playTap = function () {
-        egret.Tween.removeTweens(this.play);
+        var _this = this;
+        // egret.Tween.removeTweens(this.play);
+        // egret.Tween.removeTweens(this.title);
+        var Height = this.stage.stageHeight;
+        egret.Tween.get(this.logo).to({ y: -100 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.logo);
+        });
+        egret.Tween.get(this.logo).to({ y: -100 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.logo);
+        });
         egret.Tween.removeTweens(this.title);
-        this.removeChildren();
-        this.parent.removeChild(this);
-        this._GameContainer.createGame();
+        egret.Tween.get(this.title).to({ y: -100 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.title);
+        });
+        egret.Tween.get(this.play).to({ y: Height + 100 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.play);
+            _this.removeChildren();
+            _this.parent.removeChild(_this);
+            _this._GameContainer.createGame();
+        });
+        egret.Tween.get(this.music).to({ y: -100 }, 400, egret.Ease.sineOut).call(function () {
+            egret.Tween.removeTweens(_this.music);
+        });
     };
     Home.prototype.musicBegin = function () {
         this.music.scaleX = 0.93;

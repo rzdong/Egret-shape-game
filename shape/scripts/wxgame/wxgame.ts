@@ -29,6 +29,9 @@ export class WxgamePlugin implements plugins.Command {
                 if (filename == "libs/modules/eui/eui.js" || filename == 'libs/modules/eui/eui.min.js') {
                     content += ";window.eui = eui;"
                 }
+                if (filename == "libs/modules/particle/particle.js" || filename == 'libs/modules/particle/particle.min.js') {
+                    content += `;window.particle = particle;`;
+                }
                 if (filename == 'libs/modules/dragonBones/dragonBones.js' || filename == 'libs/modules/dragonBones/dragonBones.min.js') {
                     content += ';window.dragonBones = dragonBones';
                 }
